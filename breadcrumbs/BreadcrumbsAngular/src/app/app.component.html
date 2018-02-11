@@ -1,0 +1,67 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <a class="navbar-brand" href="#">Breadcrumbs</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor02" aria-controls="navbarColor02"
+    aria-expanded="false" aria-label="Toggle navigation">
+  </button>
+  <button class="btn btn-secondary my-2 my-sm-0 ml-auto" type="submit" onclick="openEView()">+ Event</button>
+</nav>
+
+<div id="viewer">
+
+  <div class="menu">
+    <div class="btn-group" role="group" aria-label="Basic example">
+      <button type="button" class="btn btn-secondary" onclick="switchView('map')">Map</button>
+      <button type="button" class="btn btn-secondary" onclick="switchView('list')">List</button>
+    </div>
+  </div>
+
+  <div class="map" id="map">
+    <agm-map [latitude]="mapLat" [longitude]="mapLng" [zoom]="zoom">
+      <agm-marker *ngFor="let displayEvent of displayEvents; let i=index" [latitude]="displayEvent.lat" [longitude]="displayEvent.lng"
+        (markerClick)="viewEventDetails(displayEvent)">
+        <agm-snazzy-info-window [maxWidth]="200" [closeWhenOthersOpen]="true">
+          <ng-template>
+            {{selectedEventDisplay}}
+          </ng-template>
+        </agm-snazzy-info-window>
+      </agm-marker>
+    </agm-map>
+  </div>
+
+  <div class="list" id="list" hidden>
+    <div *ngFor="let displayEvent of displayEvents" class="card border-dark mb-3" style="max-width: 20rem;">
+      <div class="card-header">{{displayEvent.location}}</div>
+      <div class="card-body text-dark">
+        <h4 class="card-title">{{displayEvent.title}}</h4>
+        <p class="card-text">{{displayEvent.food}} - {{displayEvent.details}}</p>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div class="form" id="form" hidden>
+  <div class="form-group">
+    <label for="org">Event Title</label>
+    <input type="org" class="form-control" id="exampleInputEmail1" placeholder="Interest Meeting!" [(ngModel)]="newEvent.title">
+  </div>
+  <div class="form-group">
+    <label for="org">Organization/Cause</label>
+    <input type="org" class="form-control" id="exampleInputEmail1" placeholder="Women in Computing Sciences" [(ngModel)]="newEvent.organization">
+  </div>
+  <div class="form-group">
+    <label for="location">Location</label>
+    <input type="location" class="form-control" id="exampleInputPassword1" placeholder="Rice Hall" [(ngModel)]="newEvent.location">
+  </div>
+  <div class="form-group">
+    <label for="food">Food</label>
+    <input type="food" class="form-control" id="exampleInputPassword1" placeholder="Pizza!" [(ngModel)]="newEvent.food">
+  </div>
+  <div class="form-group">
+    <label for="details">Details</label>
+    <textarea class="form-control" id="exampleTextarea" rows="3" placeholder="1st floor lobby, bring your friends." [(ngModel)]="newEvent.details"></textarea>
+  </div>
+  <button class="btn btn-primary" (click)="createEvent()" onclick="openView()">Submit</button>
+  <button class="btn btn-danger" onclick="openView()" (click)="cancel()">Cancel</button>
+</div>

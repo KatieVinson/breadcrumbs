@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>Breadcrumbs</title>
+  <base href="/">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+
+  <script>
+    /* open event adder */
+    function openEView() {
+      var viewer = document.getElementById('viewer');
+      viewer.setAttribute('hidden', 'true');
+      var form = document.getElementById('form');
+      form.removeAttribute('hidden');
+    }
+
+    function openView() {
+      var form = document.getElementById('form');
+      form.setAttribute('hidden', 'true');
+      var viewer = document.getElementById('viewer');
+      viewer.removeAttribute('hidden');
+    }
+
+    /* switch b/t map and list views */
+    function switchView(view) {
+      var map = document.getElementById('map');
+      var list = document.getElementById('list');
+      if (view == "map") {
+        list.setAttribute('hidden', "true");
+        map.removeAttribute("hidden");
+      }
+      else {
+        map.setAttribute('hidden', "true");
+        list.removeAttribute("hidden");
+      }
+    }
+
+    function viewEventDetails(event) {
+      console.log(event);
+    }
+
+  </script>
+</head>
+
+<body>
+  <app-root></app-root>
+
+
+
+</body>
+
+</html>

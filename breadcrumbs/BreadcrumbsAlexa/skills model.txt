@@ -1,0 +1,262 @@
+{
+  "languageModel": {
+    "types": [
+      {
+        "name": "color",
+        "values": [
+          {
+            "id": null,
+            "name": {
+              "value": "SetMyFavoriteColor {color} is my favorite color",
+              "synonyms": []
+            }
+          },
+          {
+            "id": null,
+            "name": {
+              "value": "SetMyFavoriteColor my favorite color is {color}",
+              "synonyms": []
+            }
+          },
+          {
+            "id": null,
+            "name": {
+              "value": "SetMyFavoriteColor i like {color}",
+              "synonyms": []
+            }
+          },
+          {
+            "id": null,
+            "name": {
+              "value": "GetMyFavoriteColor what is my favorite color",
+              "synonyms": []
+            }
+          },
+          {
+            "id": null,
+            "name": {
+              "value": "GetMyFavoriteColor what color do i like",
+              "synonyms": []
+            }
+          }
+        ]
+      },
+      {
+        "name": "CustomLocation",
+        "values": [
+          {
+            "id": null,
+            "name": {
+              "value": "Rice Hall",
+              "synonyms": []
+            }
+          },
+          {
+            "id": null,
+            "name": {
+              "value": "Nau Hall",
+              "synonyms": []
+            }
+          },
+          {
+            "id": null,
+            "name": {
+              "value": "Wilsdorf Hall",
+              "synonyms": []
+            }
+          },
+          {
+            "id": null,
+            "name": {
+              "value": "Mechanical Engineering Building",
+              "synonyms": []
+            }
+          },
+          {
+            "id": null,
+            "name": {
+              "value": "Brown Library",
+              "synonyms": []
+            }
+          },
+          {
+            "id": null,
+            "name": {
+              "value": "Alderman Library",
+              "synonyms": []
+            }
+          }
+        ]
+      },
+      {
+        "name": "CustomName",
+        "values": [
+          {
+            "id": null,
+            "name": {
+              "value": "General Body Meeting",
+              "synonyms": []
+            }
+          },
+          {
+            "id": null,
+            "name": {
+              "value": "Interest Meeting",
+              "synonyms": []
+            }
+          },
+          {
+            "id": null,
+            "name": {
+              "value": "Networking event",
+              "synonyms": []
+            }
+          },
+          {
+            "id": null,
+            "name": {
+              "value": "Info session",
+              "synonyms": []
+            }
+          },
+          {
+            "id": null,
+            "name": {
+              "value": "Information session",
+              "synonyms": []
+            }
+          },
+          {
+            "id": null,
+            "name": {
+              "value": "Club meeting",
+              "synonyms": []
+            }
+          },
+          {
+            "id": null,
+            "name": {
+              "value": "meet and greet",
+              "synonyms": []
+            }
+          }
+        ]
+      }
+    ],
+    "intents": [
+      {
+        "name": "AddFreeFood",
+        "samples": [
+          "Add free food",
+          "Add an event",
+          "Add an event with free food"
+        ],
+        "slots": [
+          {
+            "name": "EventName",
+            "type": "CustomName",
+            "samples": [
+              "{EventName}",
+              "The event name is {EventName}",
+              "It is {EventName}"
+            ]
+          },
+          {
+            "name": "EventLocation",
+            "type": "CustomLocation"
+          },
+          {
+            "name": "FoodType",
+            "type": "AMAZON.Food"
+          },
+          {
+            "name": "EventTime",
+            "type": "AMAZON.TIME"
+          }
+        ]
+      },
+      {
+        "name": "AMAZON.CancelIntent",
+        "samples": []
+      },
+      {
+        "name": "AMAZON.HelpIntent",
+        "samples": []
+      },
+      {
+        "name": "AMAZON.RepeatIntent",
+        "samples": []
+      },
+      {
+        "name": "AMAZON.StartOverIntent",
+        "samples": []
+      },
+      {
+        "name": "AMAZON.StopIntent",
+        "samples": []
+      },
+      {
+        "name": "FindFreeFood",
+        "samples": [
+          "Find free food",
+          "I want free food",
+          "find me free food"
+        ],
+        "slots": []
+      }
+    ],
+    "invocationName": "bread crumbs"
+  },
+  "prompts": [
+    {
+      "id": "Elicit.Intent-AddFreeFood.IntentSlot-EventName",
+      "variations": [
+        {
+          "type": "PlainText",
+          "value": "What is the event name?"
+        }
+      ]
+    }
+  ],
+  "dialog": {
+    "intents": [
+      {
+        "name": "AddFreeFood",
+        "confirmationRequired": false,
+        "prompts": {},
+        "slots": [
+          {
+            "name": "EventName",
+            "type": "CustomName",
+            "elicitationRequired": true,
+            "confirmationRequired": false,
+            "prompts": {
+              "elicitation": "Elicit.Intent-AddFreeFood.IntentSlot-EventName"
+            }
+          },
+          {
+            "name": "EventLocation",
+            "type": "CustomLocation",
+            "elicitationRequired": false,
+            "confirmationRequired": false,
+            "prompts": {}
+          },
+          {
+            "name": "FoodType",
+            "type": "AMAZON.Food",
+            "elicitationRequired": false,
+            "confirmationRequired": false,
+            "prompts": {}
+          },
+          {
+            "name": "EventTime",
+            "type": "AMAZON.TIME",
+            "elicitationRequired": false,
+            "confirmationRequired": false,
+            "prompts": {}
+          }
+        ]
+      }
+    ]
+  }
+}
